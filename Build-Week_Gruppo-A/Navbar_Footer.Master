@@ -1,0 +1,204 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Navbar_Footer.master.cs" Inherits="Build_Week_Gruppo_A.Navbar_Footer" %>
+
+<!DOCTYPE html>
+<style>
+ @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css");
+         @import url('https://fonts.googleapis.com/css2?family=Signika+Negative:wght@300;400;500;600;700&display=swap');
+
+    body {
+        background-image: url(./img/sfondo2.png) !important;
+        background-size: cover;
+        height: 100vh;
+    }
+
+    * {
+        font-family: 'Signika Negative', sans-serif;
+    }
+
+ 
+    .widthImg {
+        width: 75px;
+    }
+
+    nav {
+        top: 0;
+        z-index: 10;
+        background-color: lightgrey;
+        box-shadow: -2px 14px 31px 2px rgba(0,0,0,0.6);
+    }
+
+    #Button_CercaChitarra {
+        margin-left: 1rem;
+        background-color: transparent;
+        color: black;
+        border: none;
+        text-transform: uppercase;
+        font-weight: bold;
+        letter-spacing: 0.1rem;
+    }
+
+    .bi-search{
+        font-size: 1.1rem;
+    }
+    #LinkButton_Carrello i{
+        font-size: 1.5rem;
+    }
+
+    #LinkButton_Login{
+        font-size: 1.8rem;
+    }
+
+    #card-button{
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 0.1rem;
+    }
+    .stile-bottone{
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 0.1rem;
+        background-color: black;
+    }
+
+    .stile-bottone-compra{
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 0.1rem;
+        background: rgb(108,36,36);
+        background: linear-gradient(267deg, rgba(108,36,36,1) 38%, rgba(82,25,25,1) 73%, rgba(0,0,0,1) 98%);
+    }
+    .letter-space{
+        letter-spacing: 0.1rem;
+    }
+
+    #main-container{
+        border-radius: 1em;
+        margin-bottom: 5rem;
+    }
+   
+    #main-container div{
+        background-color: white;
+        border-radius: 1em;                
+    }
+    
+    .container-footer{
+
+        box-shadow: -2px -11px 31px 2px rgba(0,0,0,0.6)!important;
+    }
+
+    .img-box img{
+        height: 90%;
+    }
+
+    .dettaglio-bottone-compra{
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 0.1rem;
+    }
+
+    #ModificaPwd{
+        text-transform: uppercase;
+        letter-spacing: 0.1rem;
+        color: white;
+    }
+
+    #register-container input{
+        width: 48%;
+        margin: 2vh 0;
+    }
+
+</style>
+<html>
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="style.css" rel="stylesheet" />
+    <title>Musicalità</title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+    
+<body>
+
+    <form id="form1" runat="server">
+        <div class="main-div">
+
+            <a href="../Default.aspx"><img class="img-fluid w-100" src="../img/Musicalita.png" /></a>
+
+            <%-- NAVBAR LIGHT DELLA SEARCH BAR  --%>
+
+            <nav class="navbar navbar-expand position-sticky px-3">
+                <div class="container">
+
+                    <div class="d-flex align-items-center">
+                        <asp:LinkButton runat="server" CssClass="btn btn-sm mx-2"  ID="LinkButton_Login" PostBackUrl="~/Login.aspx"><i class="bi bi-person-circle"></i></asp:LinkButton>
+                        <a class="navbar-brand" style="font-size: 14px; font-weight: bold" href="../Login.aspx">Benvenuto,
+                            <asp:Label ID="Label_NomeCookie" runat="server" Text="Utente"></asp:Label></a>
+                            <asp:LinkButton ID="LinkButton_Logout" OnClick="Button_LogoutCookie_Click" Visible="false" runat="server" CssClass="btn btn-sm fs-5" ><i class="bi bi-box-arrow-right"></i></asp:LinkButton>
+                    </div>
+                    <div class="d-flex align-items-center w-100 me-5 d-none d-lg-flex" style="max-width: 400px; max-height:40px;">
+                        <asp:TextBox CssClass="form-control" ID="TextBox_CercaChitarra" placeholder="Cerca la tua chitarra preferita" runat="server"></asp:TextBox>
+                        <asp:Button ID="Button_CercaChitarra" CssClass="btn btn-sm btn-secondary" runat="server" OnClick="Button_CercaChitarra_Click" Text="Cerca" />
+                        <i class="bi bi-search"></i>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <asp:LinkButton runat="server" CssClass="btn btn-sm mx-2" ID="LinkButton_Carrello" PostBackUrl="~/Carrello.aspx">
+                            <i class="bi bi-cart"></i>
+                            <asp:Label Visible="false" ID="Label_BadgeCarrello" runat="server">
+                                <span style="top: 23px" class="position-absolute  translate-middle badge rounded-pill bg-danger">
+                                    <asp:Label ID="Label_CounterCarrello" runat="server" Text="0"></asp:Label>
+                                </span>
+                            </asp:Label>
+                        </asp:LinkButton>
+                        <asp:LinkButton runat="server" Visible="false" CssClass="btn btn-sm fs-4" ID="LinkButton_Admin" PostBackUrl="~/admin/ListaProdotti.aspx"><i class="bi bi-robot"></i></asp:LinkButton>
+                    </div>
+                </div>
+            </nav>
+
+            <%-- NAVBAR DARK DELLE CATEGORIE  --%>
+
+             <nav class="navbar navbar-expand-lg bg-dark text-white position-sticky mb-5" style="top:68px; z-index:10">
+                <div class="container">
+                  
+                     <div class="d-flex d-lg-none w-100 ">
+                        <button class="navbar-toggler bg-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon text-white"></span>
+                        </button>
+                         <asp:TextBox CssClass="form-control d-lg-none d-flex w-100 mx-2 bg-dark text-white" ID="TextBox_CercaChitarraDARK" placeholder="Cerca la tua chitarra preferita" runat="server" />
+                        <asp:Button ID="ButtonGuitSearch" CssClass="btn btn-sm btn-secondary d-lg-none d-flex " runat="server" OnClick="Button_CercaChitarra_Click" Text="Cerca" />
+
+                    </div>
+
+                    <div class="flex-column flex-lg-row align-items-center justify-content-center collapse navbar-collapse mx-auto" id="navbarNavAltMarkup">
+                         <a class="nav-link mx-2" href='../Default.aspx'>Home</a>
+                        <asp:Repeater ItemType="Build_Week_Gruppo_A.Categoria" ID="Repeater_NavbarCategorie" runat="server">
+                            <ItemTemplate>
+                                <a class="nav-link mx-2" href='../ProdottiPerCategoria.aspx?IdCategoria=<%# Item.ID_Categoria %>'><%# Item.Tipologia %></a>
+                            </ItemTemplate>
+                        </asp:Repeater>
+                    </div>
+
+                </div>
+            </nav>
+
+
+            <%-- CONTENUTO CONTENTPAGE  --%>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+
+
+
+            <%-- FOOTER  --%>
+            <div class="container-footer container-fluid bg-light shadow">
+                <footer class="text-center py-3 mt-4 border-top">
+                     <span class=" text-muted text-center">© Dicembre 2022 - Giuseppe Di Pisa, Bruno Stano, Stefano Laguda, Nicola Lerra, Luigi Crisci</span>
+                </footer>
+            </div>
+        </div>
+    </form>
+    <script src="Scripts/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/872d60ae5c.js" crossorigin="anonymous"></script>
+</body>
+
+
+</html>
